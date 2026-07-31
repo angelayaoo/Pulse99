@@ -1,0 +1,55 @@
+interval_seconds: 15
+failure_threshold: 3
+
+webhooks:
+  discord: ""
+  telegram:
+    bot_token: ""
+    chat_id: ""
+
+alerts:
+  email:
+    enabled: false
+    smtp_host: "smtp.gmail.com"
+    smtp_port: 587
+    smtp_username: ""
+    smtp_password: ""
+    from_address: "sentinel@example.com"
+    to_addresses:
+      - "admin@example.com"
+  twilio:
+    enabled: false
+    account_sid: ""
+    auth_token: ""
+    from_phone: "+1234567890"
+    to_phones:
+      - "+0987654321"
+
+dashboard:
+  enabled: true
+  port: 8080
+
+storage:
+  db_path: "orbital-sentinel.db"
+
+targets:
+  - name: "httpbin-ok"
+    url: "https://httpbin.org/status/200"
+    method: "GET"
+    expected_status: 200
+    timeout_seconds: 10
+    headers: {}
+
+  - name: "jsonplaceholder"
+    url: "https://jsonplaceholder.typicode.com/posts/1"
+    method: "GET"
+    expected_status: 200
+    timeout_seconds: 10
+    headers: {}
+
+  - name: "httpbin-fail"
+    url: "https://httpbin.org/status/500"
+    method: "GET"
+    expected_status: 200
+    timeout_seconds: 10
+    headers: {}
